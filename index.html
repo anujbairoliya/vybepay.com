@@ -71,6 +71,10 @@
 }
 </script>
 
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236B46FF'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236B46FF'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -694,20 +698,83 @@ select.form-input {
 .footer-purple { color: var(--purple); }
 .footer-disclaimer { max-width: 640px; margin: 12px auto 0; padding: 0 24px; font-size: 0.65rem; color: rgba(0,0,0,0.35); line-height: 1.6; text-align: center; }
 
-/* Responsive */
+/* Responsive — iPad / Tablet (768–1024px) */
+@media (max-width: 1024px) {
+  #teaser-section { cursor: auto; }
+  #cursor, #cursor-ring { display: none !important; }
+  .pf { width: 240px; height: 490px; border-radius: 40px; }
+}
+
+/* Responsive — iPad / small tablets (max-width: 900px) */
 @media (max-width: 900px) {
   #s4 { flex-direction: column; gap: 32px; padding: 32px; }
   .app-copy { max-width: 100%; text-align: center; align-items: center; }
   .feat-items { align-items: center; }
   .fi { text-align: left; }
+  .pain-text { font-size: clamp(22px, 3.5vw, 40px); }
+  .seo-inner { padding: 40px 24px; }
 }
-@media (max-width: 520px) {
+
+/* Responsive — Large phones (max-width: 640px) */
+@media (max-width: 640px) {
+  .sc { padding: 40px 24px; }
+  .hook-num { font-size: clamp(80px, 18vw, 200px); }
+  .hook-line.on { height: 40px; }
+  .hook-sub { font-size: clamp(16px, 4vw, 24px); }
+  .pain-stage { height: 180px; }
+  .pain-text { font-size: clamp(20px, 5.5vw, 36px); }
+  .pain-dots { margin-top: 36px; }
+  .reveal-name { font-size: clamp(48px, 14vw, 120px); }
+  .reveal-desc { font-size: clamp(12px, 3vw, 16px); }
+  .reveal-pill-row { gap: 8px; margin-top: 20px; }
+  .reveal-pill { font-size: 9px; padding: 6px 12px; }
+  .pf { width: 200px; height: 410px; border-radius: 36px; }
+  .pf-notch { width: 80px; height: 22px; border-radius: 0 0 18px 18px; }
+  .ps { padding: 30px 12px 18px; }
+  .ph-name { font-size: 15px; margin-bottom: 12px; }
+  .pbc-amt { font-size: 26px; }
+  .ph-bal-card { padding: 14px; border-radius: 16px; }
+  .cta-headline { font-size: clamp(28px, 8vw, 52px) !important; }
+  .cta-sub { font-size: clamp(12px, 3vw, 16px) !important; }
+  .cta-actions { flex-direction: column; gap: 10px; }
+  .btn-teaser-primary, .btn-teaser-secondary { width: 100%; text-align: center; }
+  #replay { bottom: 24px; right: 24px; font-size: 11px; padding: 8px 16px; }
   .wl-page { padding: 48px 16px 32px; }
-  .form-card { padding: 24px 20px; }
+}
+
+/* Responsive — Small phones (max-width: 520px) */
+@media (max-width: 520px) {
+  .wl-page { padding: 36px 12px 24px; }
+  .form-card { padding: 24px 16px; }
   .conditional-row.show { grid-template-columns: 1fr; }
-  .wl-logo { font-size: 1.6rem; margin-bottom: 36px; }
-  .sc { padding: 32px 20px; }
+  .wl-logo { font-size: 1.5rem; margin-bottom: 28px; }
+  .wl-headline { font-size: 1.4rem; }
+  .wl-sub { font-size: 0.85rem; }
+  .sc { padding: 28px 16px; }
   .footer-inner { flex-direction: column; gap: 8px; }
+  .footer-disclaimer { font-size: 0.58rem; padding: 0 16px; }
+  .disclaimer { font-size: 0.62rem; }
+  .seo-inner { padding: 32px 16px; }
+  .seo-inner h2 { font-size: 1.2rem; }
+  .seo-inner h3 { font-size: 1rem; }
+  .seo-inner p { font-size: 0.85rem; }
+  .hook-num { font-size: clamp(64px, 16vw, 160px); }
+  .pain-stage { height: 160px; }
+  .pain-text { font-size: clamp(18px, 5vw, 30px); }
+  .pf { width: 180px; height: 370px; border-radius: 32px; }
+  .phone-group { flex-direction: column; }
+  .phone-group .country-select { width: 100%; border-radius: 10px; }
+  .phone-group input[type="tel"] { border-radius: 10px; }
+}
+
+/* Responsive — Very small phones (max-width: 380px) */
+@media (max-width: 380px) {
+  .hook-num { font-size: 60px; }
+  .pain-text { font-size: 18px; }
+  .reveal-name { font-size: 42px; }
+  .pf { width: 160px; height: 328px; border-radius: 28px; }
+  .cta-headline { font-size: 26px !important; }
+  .form-card { padding: 20px 14px; }
 }
 </style>
 </head>
@@ -921,9 +988,9 @@ select.form-input {
           </div>
           <div class="conditional-row show" id="parent-fields">
             <div class="form-group">
-              <label for="kid-age">Your child's age</label>
+              <label for="kid-age">Your teenager's age</label>
               <select id="kid-age" class="form-input"><option value="" disabled selected>Select age</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option></select>
-              <div class="form-error" id="err-kid-age">Please select your child's age</div>
+              <div class="form-error" id="err-kid-age">Please select your teenager's age</div>
             </div>
             <div class="form-group">
               <label for="parent-city">City</label>
@@ -1208,15 +1275,27 @@ function handleSubmit(e) {
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Joining...'; btn.disabled = true;
 
-  // TODO: Replace with your Google Apps Script URL
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwOdZu6wC8p15LU4UxX6vP1xJ01br8-ZTIV9L4oc-_pBSzpgVEtZkez4skFrApBCVq5Cg/exec';
-  fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) })
-    .then(showSuccess).catch(showSuccess);
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxOkWgmXPRPx7eGRMD5idLsG8a2n6d_Ftw3vlNlFUDDxrlb7sxMLi5kb_8fadAy45horg/exec';
+  fetch(SHEET_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(res){
+    if (res && res.row) {
+      showSuccess(res.row);
+    } else {
+      showSuccess(null);
+    }
+  })
+  .catch(function(){ showSuccess(null); });
 }
 
-function showSuccess() {
+function showSuccess(rowNum) {
   document.getElementById('waitlist-form').style.display = 'none';
-  document.getElementById('position-num').textContent = Math.floor(Math.random()*500)+500;
+  var position = rowNum ? (999 + rowNum) : (1000 + Math.floor(Math.random()*20));
+  document.getElementById('position-num').textContent = position;
   document.getElementById('success-state').classList.add('show');
 }
 </script>
