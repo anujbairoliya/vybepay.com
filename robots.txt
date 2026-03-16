@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vybepay.com/sitemap.xml
