@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VybePay Blog — Teen Money, Pocket Money & Financial Literacy for Indian Families</title>
+<meta name="description" content="Expert guides on teen banking, pocket money apps, prepaid cards for teenagers, UPI for minors, and financial literacy for Indian families. From the team building VybePay.">
+<meta name="keywords" content="teen banking blog India, pocket money tips, financial literacy teenagers India, prepaid card teens, UPI minors India, VybePay blog">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vybepay.com/blog/">
+<meta property="og:title" content="VybePay Blog — Teen Money & Financial Literacy for Indian Families">
+<meta property="og:description" content="Expert guides on teen banking, pocket money apps, and financial literacy for Indian families.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vybepay.com/blog/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236B46FF'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #6B46FF;
+  --cream: #FAF9F6;
+  --dark: #1A1A2E;
+  --text: #2D2D3A;
+  --text-muted: #8A8A9A;
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--text); -webkit-font-smoothing: antialiased; }
+a { color: var(--purple); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Nav */
+.nav { background: #fff; border-bottom: 1px solid rgba(0,0,0,0.06); padding: 16px 24px; position: sticky; top: 0; z-index: 100; }
+.nav-inner { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.nav-logo { font-family: var(--font-display); font-size: 1.3rem; color: var(--dark); }
+.nav-logo span { color: var(--purple); }
+.nav-link { font-size: 0.85rem; font-weight: 500; color: #fff; background: var(--purple); padding: 8px 20px; border-radius: 100px; transition: opacity 0.2s; }
+.nav-link:hover { opacity: 0.85; text-decoration: none; }
+
+/* Hero */
+.blog-hero { text-align: center; padding: 64px 24px 48px; }
+.blog-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--dark); margin-bottom: 12px; }
+.blog-hero p { font-size: 1rem; color: var(--text-muted); max-width: 540px; margin: 0 auto; line-height: 1.6; }
+
+/* Article Grid */
+.articles { max-width: 900px; margin: 0 auto; padding: 0 24px 64px; display: grid; grid-template-columns: 1fr; gap: 24px; }
+.article-card { background: #fff; border-radius: 16px; padding: 32px; border: 1px solid rgba(0,0,0,0.05); transition: box-shadow 0.2s, transform 0.2s; }
+.article-card:hover { box-shadow: 0 8px 32px rgba(107,70,255,0.08); transform: translateY(-2px); }
+.article-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--purple); margin-bottom: 12px; display: inline-block; }
+.article-card h2 { font-family: var(--font-display); font-size: 1.4rem; color: var(--dark); margin-bottom: 10px; line-height: 1.3; }
+.article-card h2 a { color: var(--dark); }
+.article-card h2 a:hover { color: var(--purple); text-decoration: none; }
+.article-excerpt { font-size: 0.92rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px; }
+.article-meta { font-size: 0.78rem; color: var(--text-muted); }
+.read-more { font-size: 0.85rem; font-weight: 500; color: var(--purple); }
+
+/* CTA Banner */
+.cta-banner { background: var(--dark); padding: 48px 24px; text-align: center; }
+.cta-banner h2 { font-family: var(--font-display); color: #F5F5F0; font-size: 1.5rem; margin-bottom: 10px; }
+.cta-banner p { color: rgba(245,245,240,0.5); font-size: 0.9rem; margin-bottom: 20px; }
+.cta-btn { display: inline-block; background: var(--purple); color: #fff; font-weight: 600; font-size: 0.9rem; padding: 12px 32px; border-radius: 100px; transition: opacity 0.2s; }
+.cta-btn:hover { opacity: 0.85; text-decoration: none; }
+
+/* Footer */
+.footer { text-align: center; padding: 24px; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid rgba(0,0,0,0.06); }
+
+@media (max-width: 520px) {
+  .blog-hero { padding: 48px 16px 32px; }
+  .articles { padding: 0 16px 48px; }
+  .article-card { padding: 24px; }
+  .article-card h2 { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Vybe<span>Pay</span></a>
+    <a href="/" class="nav-link">Join Waitlist</a>
+  </div>
+</nav>
+
+<div class="blog-hero">
+  <h1>The VybePay Blog</h1>
+  <p>Everything Indian parents and teenagers need to know about pocket money, teen banking, and building smart money habits.</p>
+</div>
+
+<div class="articles">
+
+  <article class="article-card">
+    <span class="article-tag">Guide</span>
+    <h2><a href="/blog/best-pocket-money-apps-india.html">Best Pocket Money Apps for Teenagers in India (2026)</a></h2>
+    <p class="article-excerpt">A comprehensive comparison of every pocket money and teen banking app available in India — Junio, FamPay, Fyp, Xare, and more. Which one is right for your family?</p>
+    <span class="article-meta">March 2026 &middot; 8 min read</span>
+  </article>
+
+  <article class="article-card">
+    <span class="article-tag">FAQ</span>
+    <h2><a href="/blog/can-teenagers-get-debit-card-india.html">Can Teenagers Get a Debit Card in India? Complete Guide</a></h2>
+    <p class="article-excerpt">Everything you need to know about debit cards, prepaid cards, and digital wallets for minors in India — RBI rules, age limits, and the best options available.</p>
+    <span class="article-meta">March 2026 &middot; 6 min read</span>
+  </article>
+
+  <article class="article-card">
+    <span class="article-tag">Parenting</span>
+    <h2><a href="/blog/teach-teenager-about-money.html">How to Teach Your Teenager About Money: An Indian Parent's Guide</a></h2>
+    <p class="article-excerpt">Practical, age-appropriate strategies for Indian parents to build financial literacy in their teenagers — from pocket money to UPI to savings goals.</p>
+    <span class="article-meta">March 2026 &middot; 7 min read</span>
+  </article>
+
+  <article class="article-card">
+    <span class="article-tag">Explainer</span>
+    <h2><a href="/blog/upi-for-teenagers-india.html">UPI for Teenagers in India: Everything You Need to Know</a></h2>
+    <p class="article-excerpt">Can teenagers use UPI in India? What are the rules, which apps support it, and how can parents ensure safe digital payments for their teens?</p>
+    <span class="article-meta">March 2026 &middot; 5 min read</span>
+  </article>
+
+  <article class="article-card">
+    <span class="article-tag">Trends</span>
+    <h2><a href="/blog/digital-pocket-money-india.html">Digital Pocket Money: Why Indian Families Are Going Cashless</a></h2>
+    <p class="article-excerpt">Cash pocket money is fading. Here's why millions of Indian families are switching to digital pocket money apps and what it means for your teenager's financial future.</p>
+    <span class="article-meta">March 2026 &middot; 6 min read</span>
+  </article>
+
+  <article class="article-card">
+    <span class="article-tag">Regulation</span>
+    <h2><a href="/blog/rbi-rules-minor-bank-account.html">RBI Rules for Minor Bank Accounts in India (2025-2026 Update)</a></h2>
+    <p class="article-excerpt">The RBI has updated its guidelines for minor bank accounts effective July 2025. Here's what changed and what it means for parents and teenagers.</p>
+    <span class="article-meta">March 2026 &middot; 5 min read</span>
+  </article>
+
+</div>
+
+<div class="cta-banner">
+  <h2>India's teen money app is coming</h2>
+  <p>Prepaid card, UPI, savings goals, and parental controls — all in one app.</p>
+  <a href="/" class="cta-btn">Join the Waitlist</a>
+</div>
+
+<footer class="footer">
+  &copy; 2026 Essby Fintech Innovations Private Limited. All rights reserved.
+</footer>
+
+</body>
+</html>
