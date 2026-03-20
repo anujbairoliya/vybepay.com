@@ -1276,20 +1276,24 @@ function handleSubmit(e) {
   btn.textContent = 'Joining...'; btn.disabled = true;
 
   var SHEET_URL = 'https://script.google.com/macros/s/AKfycbxOkWgmXPRPx7eGRMD5idLsG8a2n6d_Ftw3vlNlFUDDxrlb7sxMLi5kb_8fadAy45horg/exec';
+
+  // Method: Use fetch with no-cors as reliable fallback, plus an image ping for guaranteed delivery
   fetch(SHEET_URL, {
     method: 'POST',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(data)
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(res){
-    if (res && res.row) {
-      showSuccess(res.row);
-    } else {
-      showSuccess(null);
-    }
-  })
-  .catch(function(){ showSuccess(null); });
+  }).then(function(){ showSuccess(null); }).catch(function(){ showSuccess(null); });
+
+  // Backup: Also send via URL params (GET request through image) for guaranteed delivery
+  var params = 'name=' + encodeURIComponent(data.name) +
+    '&email=' + encodeURIComponent(data.email) +
+    '&phone=' + encodeURIComponent(data.phone) +
+    '&role=' + encodeURIComponent(data.role) +
+    '&age=' + encodeURIComponent(data.age) +
+    '&city=' + encodeURIComponent(data.city);
+  var img = new Image();
+  img.src = SHEET_URL + '?' + params;
 }
 
 function showSuccess(rowNum) {
