@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — VybePay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236B46FF'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='40' font-weight='bold' fill='white' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --cream:   #FAF7F2;
+      --dark:    #1C1917;
+      --muted:   #78716C;
+      --purple:  #6B46FF;
+      --purple-soft: rgba(107,70,255,0.08);
+      --border:  rgba(28,25,23,0.1);
+      --white:   #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--cream);
+      color: var(--dark);
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+    /* ── NAV ── */
+    nav {
+      background: #0A0A12;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 22px;
+      color: #FAFAF8;
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--purple); }
+    .nav-link {
+      font-size: 13px;
+      color: rgba(250,250,248,0.55);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .nav-link:hover { color: #FAFAF8; }
+    /* ── HERO BAND ── */
+    .hero {
+      background: #0A0A12;
+      padding: 56px 40px 64px;
+      text-align: center;
+      border-bottom: 1px solid rgba(107,70,255,0.2);
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 48px;
+      font-weight: 400;
+      color: #FAFAF8;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      font-size: 14px;
+      color: rgba(250,250,248,0.45);
+    }
+    .hero-meta strong { color: rgba(250,250,248,0.8); font-weight: 500; }
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 56px 24px 100px;
+    }
+    /* ── TYPOGRAPHY ── */
+    h2 {
+      font-family: 'DM Serif Display', Georgia, serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--dark);
+      margin: 52px 0 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    h2:first-of-type { margin-top: 0; }
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--purple);
+      margin: 24px 0 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    p { color: var(--muted); margin-bottom: 14px; }
+    p strong { color: var(--dark); font-weight: 600; }
+    ul, ol {
+      color: var(--muted);
+      padding-left: 22px;
+      margin-bottom: 14px;
+    }
+    li { margin-bottom: 7px; }
+    li strong { color: var(--dark); }
+    a { color: var(--purple); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* ── DATA TABLE (simple) ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 14.5px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .data-table th {
+      background: rgba(28,25,23,0.05);
+      color: var(--dark);
+      padding: 11px 16px;
+      text-align: left;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    /* ── CALLOUT CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin: 20px 0;
+    }
+    .card p:last-child { margin-bottom: 0; }
+    /* ── CONTACT BLOCK ── */
+    .contact-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 24px;
+    }
+    .contact-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-label {
+      width: 160px;
+      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .contact-value { color: var(--muted); }
+    .contact-value a { color: var(--purple); }
+    /* ── FOOTER ── */
+    footer {
+      background: #0A0A12;
+      border-top: 1px solid rgba(107,70,255,0.15);
+      padding: 40px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(250,250,248,0.4);
+    }
+    footer a { color: rgba(250,250,248,0.55); text-decoration: none; }
+    footer a:hover { color: #FAFAF8; }
+    footer .footer-links { margin-bottom: 12px; }
+    footer .footer-links a + a::before { content: ' · '; }
+    @media(max-width: 600px) {
+      .hero h1 { font-size: 34px; }
+      nav { padding: 16px 20px; }
+      .hero { padding: 40px 20px 48px; }
+      .contact-row { flex-direction: column; gap: 2px; }
+      .contact-label { width: auto; }
+    }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <a href="https://vybepay.com" class="nav-logo">Vybe<span>Pay</span></a>
+  <a href="https://vybepay.com" class="nav-link">← Back to home</a>
+</nav>
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p class="hero-meta">
+    Effective: <strong>1 April 2026</strong> &nbsp;&middot;&nbsp;
+    Last updated: <strong>26 March 2026</strong> &nbsp;&middot;&nbsp;
+    Version 1.0
+  </p>
+</div>
+<!-- BODY -->
+<div class="container">
+  <p>This Privacy Policy describes how <strong>Essby Fintech Innovations Private Limited</strong> (&ldquo;VybePay&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) collects, uses, and protects your information when you use the VybePay mobile application (the &ldquo;App&rdquo;). If you are under 18, your parent or legal guardian must review and accept this policy on your behalf before you use the App.</p>
+  <!-- 1 -->
+  <h2>1. Who We Are</h2>
+  <div class="card">
+    <p><strong>Essby Fintech Innovations Private Limited</strong><br>
+    CIN: U62099HR2026PTC143178<br>
+    Registered Address: VO-176, 7th Floor, WeWork HQ 27, B-660, Sushant Lok Phase I, Sector 27, Gurugram, Haryana 122009<br>
+    Grievance Officer: Anuj Bairoliya<br>
+    Contact: <a href="mailto:support@vybepay.com">support@vybepay.com</a></p>
+  </div>
+  <!-- 2 -->
+  <h2>2. Information We Collect</h2>
+  <h3>Information you provide</h3>
+  <table class="data-table">
+    <tr><th>What</th><th>Why</th></tr>
+    <tr><td>Name</td><td>Account creation and personalisation</td></tr>
+    <tr><td>Phone number</td><td>Account identification and family linking</td></tr>
+    <tr><td>Date of birth</td><td>Age verification; parental consent for users under 18</td></tr>
+    <tr><td>Email address</td><td>Transactional notifications and weekly reports (optional)</td></tr>
+    <tr><td>Profile photo</td><td>Avatar personalisation (optional)</td></tr>
+    <tr><td>4-digit PIN</td><td>App authentication &mdash; stored as a secure one-way hash, never in plaintext</td></tr>
+    <tr><td>Family code</td><td>Linking parent and teen accounts</td></tr>
+    <tr><td>Virtual activity data</td><td>Simulated savings goals, chores, pocket money, trades &mdash; educational only</td></tr>
+  </table>
+  <h3>Automatically collected</h3>
+  <ul>
+    <li>Device type and operating system &mdash; for bug diagnostics and compatibility</li>
+    <li>App usage analytics (screen views, feature engagement) &mdash; aggregated and anonymised, for improving the app</li>
+    <li>Push notification token &mdash; to deliver streak reminders and family alerts</li>
+    <li>Crash and error logs &mdash; to fix bugs and improve stability</li>
+    <li>IP address in server logs &mdash; for security and rate limiting only</li>
+  </ul>
+  <h3>What we do NOT collect</h3>
+  <ul>
+    <li>Bank account numbers, UPI IDs, or any payment credentials</li>
+    <li>Government ID numbers (Aadhaar, PAN, Passport)</li>
+    <li>Biometric data &mdash; Face ID or fingerprint authentication happens entirely on your device and is never transmitted to us</li>
+    <li>Location data of any kind</li>
+    <li>Phone contacts</li>
+  </ul>
+  <!-- 3 -->
+  <h2>3. How We Use Your Information</h2>
+  <ul>
+    <li><strong>Provide the App</strong> &mdash; authenticate your account, display your virtual dashboard, enable family features</li>
+    <li><strong>Personalise your experience</strong> &mdash; recommend lessons, adapt quiz difficulty, time notifications smartly</li>
+    <li><strong>Transactional notifications</strong> &mdash; chore approvals, money requests, streak reminders, weekly reports (you can opt out in Settings)</li>
+    <li><strong>Improve the App</strong> &mdash; analyse anonymised, aggregated usage patterns to fix bugs and add features</li>
+    <li><strong>Security and fraud prevention</strong> &mdash; detect and block abuse, rate-limit requests</li>
+    <li><strong>Legal compliance</strong> &mdash; meet obligations under the IT Act 2000 and DPDP Act 2023</li>
+    <li><strong>Investor reporting</strong> &mdash; only anonymised and aggregated metrics (e.g. total users, feature adoption). No individual user data is ever shared with investors.</li>
+  </ul>
+  <!-- 4 -->
+  <h2>4. Children&rsquo;s Privacy (DPDP Act 2023)</h2>
+  <p>VybePay is designed for users aged <strong>13&ndash;19 years</strong>.</p>
+  <ul>
+    <li>Users under 18 must have a parent or legal guardian approve their account before use.</li>
+    <li>We do not knowingly allow children under 13 to register without verifiable parental consent.</li>
+    <li>Parents linked to a teen account can view their teen&rsquo;s in-app activity through the parent dashboard.</li>
+    <li>Parents may request deletion of their child&rsquo;s account and all associated data at any time by emailing <a href="mailto:support@vybepay.com">support@vybepay.com</a>.</li>
+    <li>We do not serve targeted advertising to minors. We do not sell or share minors&rsquo; personal data with any third party for marketing purposes.</li>
+  </ul>
+  <!-- 5 -->
+  <h2>5. Data Sharing and Disclosure</h2>
+  <p>We do <strong>not</strong> sell, rent, or trade your personal data.</p>
+  <h3>Service providers</h3>
+  <p>We work with a small number of carefully selected third-party service providers to operate the App &mdash; for example, cloud infrastructure, email delivery, and app analytics. Each provider is bound by a data processing agreement and is only permitted to use your data to perform services on our behalf. We share the minimum data necessary for each purpose.</p>
+  <p>We do not disclose the identities of our service providers publicly, as this is commercially sensitive information. If you would like more information, please contact us at <a href="mailto:support@vybepay.com">support@vybepay.com</a>.</p>
+  <h3>Legal requirements</h3>
+  <p>We may disclose data if required by law, court order, or a valid government request under the IT Act 2000 or applicable regulation. We will notify you of such a request to the extent permitted by law.</p>
+  <h3>Business transfer</h3>
+  <p>In the event of an acquisition, merger, or restructuring, your data may be transferred to the new entity. We will notify you before any such transfer and give you the option to delete your account.</p>
+  <!-- 6 -->
+  <h2>6. Data Retention</h2>
+  <table class="data-table">
+    <tr><th>Data</th><th>Kept for</th></tr>
+    <tr><td>Active account</td><td>For as long as your account is active</td></tr>
+    <tr><td>Inactive account (no login for 24 months)</td><td>Deleted after 90-day advance notice via email</td></tr>
+    <tr><td>Crash logs and analytics</td><td>90 days</td></tr>
+    <tr><td>Support tickets</td><td>2 years from ticket creation</td></tr>
+    <tr><td>After account deletion</td><td>Permanently deleted within 30 days</td></tr>
+  </table>
+  <!-- 7 -->
+  <h2>7. Security</h2>
+  <p>We apply industry-standard technical and organisational measures to protect your data:</p>
+  <ul>
+    <li>Passwords and PINs are stored as secure one-way hashes &mdash; never in plaintext.</li>
+    <li>Sensitive credentials on your device are stored in the platform&rsquo;s secure hardware-backed storage (iOS Keychain / Android Keystore).</li>
+    <li>All data in transit is encrypted using HTTPS/TLS. No unencrypted connections are permitted.</li>
+    <li>Access to user data is restricted by strict, server-side rules &mdash; users can only access their own data and their linked family&rsquo;s data.</li>
+    <li>Third-party service credentials are stored exclusively on our secure server infrastructure and are never included in the app package.</li>
+  </ul>
+  <p>If you discover a security vulnerability, please report it responsibly to <a href="mailto:support@vybepay.com">support@vybepay.com</a>.</p>
+  <!-- 8 -->
+  <h2>8. Your Rights (DPDP Act 2023)</h2>
+  <ul>
+    <li><strong>Right to access</strong> &mdash; request a copy of your personal data we hold</li>
+    <li><strong>Right to correction</strong> &mdash; most data can be updated directly in the app; contact us for the rest</li>
+    <li><strong>Right to erasure</strong> &mdash; request deletion of your account and all personal data</li>
+    <li><strong>Right to grievance redressal</strong> &mdash; we respond within 48 hours and resolve within 15 working days</li>
+    <li><strong>Right to withdraw consent</strong> &mdash; opt out of non-essential notifications anytime in Settings &rarr; Notification Settings</li>
+    <li><strong>Right to nominate</strong> &mdash; nominate someone to exercise your rights in the event of your death or incapacity</li>
+  </ul>
+  <p>To exercise any right, email us at <a href="mailto:support@vybepay.com">support@vybepay.com</a> from your registered email address.</p>
+  <!-- 9 -->
+  <h2>9. Analytics and Cookies</h2>
+  <p>The VybePay website and app do not use tracking cookies for advertising. We use first-party analytics tools to collect anonymised, aggregated usage data. You can opt out of in-app analytics in Settings &rarr; Privacy &amp; My Data.</p>
+  <!-- 10 -->
+  <h2>10. Changes to This Policy</h2>
+  <p>When we make material changes, we will update the date at the top of this page, send an in-app notification, and for significant changes, request your re-consent before you can continue using the App.</p>
+  <!-- 11 -->
+  <h2>11. Governing Law</h2>
+  <p>This policy is governed by the laws of India, including the IT Act 2000 and the Digital Personal Data Protection Act 2023. Disputes are subject to the exclusive jurisdiction of courts in Gurugram, Haryana.</p>
+  <!-- 12 -->
+  <h2>12. Contact Us</h2>
+  <div class="contact-block">
+    <div class="contact-row">
+      <span class="contact-label">Grievance Officer</span>
+      <span class="contact-value">Anuj Bairoliya &mdash; <a href="mailto:support@vybepay.com">support@vybepay.com</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">General Support</span>
+      <span class="contact-value"><a href="mailto:support@vybepay.com">support@vybepay.com</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">Registered Address</span>
+      <span class="contact-value">VO-176, 7th Floor, WeWork HQ 27, B-660, Sushant Lok Phase I, Sector 27, Gurugram, Haryana 122009</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">CIN</span>
+      <span class="contact-value">U62099HR2026PTC143178</span>
+    </div>
+  </div>
+</div><!-- /container -->
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="https://vybepay.com/privacy">Privacy Policy</a>
+    <a href="https://vybepay.com/terms">Terms of Service</a>
+    <a href="mailto:support@vybepay.com">support@vybepay.com</a>
+  </div>
+  &copy; 2026 Essby Fintech Innovations Private Limited. All rights reserved.
+</footer>
+</body>
+</html>
