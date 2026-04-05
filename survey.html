@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick Survey — VybePay</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237B45FF'/%3E%3Cstop offset='100%25' stop-color='%23FF5930'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='4' y='4' width='72' height='72' rx='15' fill='url(%23g)'/%3E%3Cpath d='M22 24L40 56L58 24' fill='none' stroke='white' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='56' cy='24' r='8' fill='white' opacity='0.18'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple: #7B45FF;
+  --coral: #FF5930;
+  --cream: #FAF9F6;
+  --dark: #1A1A2E;
+  --text: #2D2D3A;
+  --muted: #8A8A9A;
+  --border: #E8E6E1;
+  --white: #FFFFFF;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Outfit', -apple-system, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Nav */
+.nav {
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--dark);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--purple); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 48px 24px 8px;
+}
+.hero-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--purple);
+  background: rgba(123,69,255,0.08);
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  color: var(--dark);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+.hero p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Survey Form */
+.survey-wrap {
+  max-width: 640px;
+  margin: 32px auto 64px;
+  padding: 0 24px;
+}
+.question-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.2s;
+}
+.question-card:focus-within {
+  box-shadow: 0 4px 24px rgba(123,69,255,0.08);
+  border-color: rgba(123,69,255,0.2);
+}
+.q-number {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+.q-label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.q-sublabel {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: -10px;
+  margin-bottom: 16px;
+}
+
+/* Radio / Checkbox Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.92rem;
+}
+.option-label:hover {
+  background: rgba(123,69,255,0.03);
+  border-color: rgba(123,69,255,0.2);
+}
+.option-label input[type="radio"],
+.option-label input[type="checkbox"] {
+  accent-color: var(--purple);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.option-label input:checked ~ span { color: var(--dark); font-weight: 500; }
+
+/* Text inputs */
+.text-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color 0.15s;
+  outline: none;
+}
+.text-input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(123,69,255,0.08);
+}
+textarea.text-input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Range slider */
+.range-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.range-value {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 4px;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--coral));
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--purple);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* Submit */
+.submit-wrap {
+  text-align: center;
+  margin-top: 8px;
+}
+.submit-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--purple), var(--coral));
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 48px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  letter-spacing: 0.02em;
+}
+.submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.submit-btn:active { transform: translateY(0); }
+.submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+/* Success */
+.success-screen {
+  display: none;
+  text-align: center;
+  padding: 64px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.success-screen .emoji { font-size: 3rem; margin-bottom: 16px; }
+.success-screen h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.success-screen p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.success-screen .home-link {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--purple);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+.success-screen .home-link:hover { text-decoration: underline; }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+@media (max-width: 520px) {
+  .hero { padding: 36px 16px 4px; }
+  .survey-wrap { padding: 0 16px; margin: 24px auto 48px; }
+  .question-card { padding: 22px 20px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><i style="font-style:italic">Vybe</i><span>Pay</span></a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-badge">Takes 60 seconds</span>
+  <h1>Help us build VybePay for you</h1>
+  <p>You're on the waitlist! A few quick questions so we build exactly what your family needs.</p>
+</div>
+
+<div class="survey-wrap" id="survey-form-wrap">
+  <form id="survey-form" onsubmit="return submitSurvey(event)">
+
+    <!-- Q1 -->
+    <div class="question-card">
+      <div class="q-number">Question 1 of 7</div>
+      <div class="q-label">What's the #1 reason you signed up for VybePay?</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q1" value="Give pocket money digitally" required><span>Give pocket money digitally</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Get a prepaid card for my teenager"><span>Get a prepaid card / debit card for my teenager</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Teach my teenager about money"><span>Teach my teenager about money</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Track and control teen spending"><span>Track and control my teenager's spending</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Help teen save and set goals"><span>Help my teenager save and set goals</span></label>
+        <label class="option-label"><input type="radio" name="q1" value="Other"><span>Other</span></label>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-card">
+      <div class="q-number">Question 2 of 7</div>
+      <div class="q-label">Which features matter most to you?</div>
+      <div class="q-sublabel">Pick up to 3</div>
+      <div class="options">
+        <label class="option-label"><input type="checkbox" name="q2" value="Prepaid card"><span>Prepaid card (physical or virtual)</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="UPI payments"><span>UPI payments for teenager</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Savings goals"><span>Savings goals and piggy banks</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Spending controls"><span>Spending limits and parental controls</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Financial education"><span>Financial literacy and learning</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Chore rewards"><span>Chore tracking and rewards</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Auto pocket money"><span>Automatic pocket money transfers</span></label>
+        <label class="option-label"><input type="checkbox" name="q2" value="Real-time notifications"><span>Real-time spending notifications</span></label>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-card">
+      <div class="q-number">Question 3 of 7</div>
+      <div class="q-label">How do you currently give pocket money?</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q3" value="Cash" required><span>Cash</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="UPI transfer"><span>UPI transfer (Google Pay, PhonePe, etc.)</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="Bank transfer"><span>Bank transfer to their account</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="Existing app"><span>Through an app (FamPay, Junio, etc.)</span></label>
+        <label class="option-label"><input type="radio" name="q3" value="Don't give regular pocket money"><span>I don't give regular pocket money yet</span></label>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-card">
+      <div class="q-number">Question 4 of 7</div>
+      <div class="q-label">How much pocket money do you give per month?</div>
+      <div class="range-wrap">
+        <div class="range-value" id="range-display">&#8377;500</div>
+        <input type="range" name="q4" min="0" max="5000" step="100" value="500" oninput="document.getElementById('range-display').innerHTML='&#8377;'+this.value">
+        <div class="range-labels">
+          <span>&#8377;0</span>
+          <span>&#8377;5,000+</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-card">
+      <div class="q-number">Question 5 of 7</div>
+      <div class="q-label">Would you pay for a premium teen money app?</div>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="q5" value="Free only" required><span>No, it must be free</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="Under 99/mo"><span>Yes, up to &#8377;99/month</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="Under 199/mo"><span>Yes, up to &#8377;199/month</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="Under 499/mo"><span>Yes, up to &#8377;499/month if it's really good</span></label>
+        <label class="option-label"><input type="radio" name="q5" value="One-time fee preferred"><span>I'd prefer a one-time fee over monthly</span></label>
+      </div>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-card">
+      <div class="q-number">Question 6 of 7</div>
+      <div class="q-label">What's your biggest frustration with how your teenager handles money today?</div>
+      <textarea class="text-input" name="q6" placeholder="E.g. spends too fast, no savings habit, can't track where money goes..." rows="3"></textarea>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-card">
+      <div class="q-number">Question 7 of 7</div>
+      <div class="q-label">Anything else you'd like to tell us?</div>
+      <div class="q-sublabel">Feature requests, concerns, ideas — all welcome</div>
+      <textarea class="text-input" name="q7" placeholder="Optional — but we read every response!" rows="3"></textarea>
+    </div>
+
+    <div class="submit-wrap">
+      <button type="submit" class="submit-btn" id="submit-btn">Submit Survey</button>
+    </div>
+  </form>
+</div>
+
+<!-- Success Screen -->
+<div class="success-screen" id="success-screen">
+  <div class="emoji">&#127881;</div>
+  <h2>Thank you!</h2>
+  <p>Your responses will directly shape what we build. We're working hard to make VybePay the best money app for Indian families.</p>
+  <a href="/" class="home-link">&larr; Back to VybePay</a>
+</div>
+
+<footer class="footer">
+  &copy; 2026 Essby Fintech Innovations Private Limited. All rights reserved.
+</footer>
+
+<script>
+// Google Apps Script URL for survey responses — UPDATE THIS with your survey sheet URL
+var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/YOUR_SURVEY_SCRIPT_ID/exec';
+
+function submitSurvey(e) {
+  e.preventDefault();
+  var btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  var form = document.getElementById('survey-form');
+  var data = {};
+
+  // Q1 - radio
+  var q1 = form.querySelector('input[name="q1"]:checked');
+  data.q1_reason = q1 ? q1.value : '';
+
+  // Q2 - checkboxes
+  var q2Checks = form.querySelectorAll('input[name="q2"]:checked');
+  var q2Vals = [];
+  q2Checks.forEach(function(cb) { q2Vals.push(cb.value); });
+  data.q2_features = q2Vals.join(', ');
+
+  // Q3 - radio
+  var q3 = form.querySelector('input[name="q3"]:checked');
+  data.q3_current_method = q3 ? q3.value : '';
+
+  // Q4 - range
+  data.q4_pocket_money = form.querySelector('input[name="q4"]').value;
+
+  // Q5 - radio
+  var q5 = form.querySelector('input[name="q5"]:checked');
+  data.q5_willingness_to_pay = q5 ? q5.value : '';
+
+  // Q6 - text
+  data.q6_frustration = form.querySelector('textarea[name="q6"]').value;
+
+  // Q7 - text
+  data.q7_other = form.querySelector('textarea[name="q7"]').value;
+
+  data.timestamp = new Date().toISOString();
+
+  // Send via POST
+  fetch(SURVEY_SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(data)
+  }).then(function() {
+    showSuccess();
+  }).catch(function() {
+    showSuccess(); // Show success anyway — data sent via backup
+  });
+
+  // Backup via GET (image ping)
+  var params = Object.keys(data).map(function(k) {
+    return k + '=' + encodeURIComponent(data[k]);
+  }).join('&');
+  var img = new Image();
+  img.src = SURVEY_SHEET_URL + '?' + params;
+
+  return false;
+}
+
+function showSuccess() {
+  document.getElementById('survey-form-wrap').style.display = 'none';
+  document.querySelector('.hero').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
