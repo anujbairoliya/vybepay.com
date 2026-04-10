@@ -177,6 +177,121 @@ textarea.text-input {
   resize: vertical;
 }
 
+/* Plan Cards */
+.plan-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.plan-card {
+  position: relative;
+  display: block;
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--white);
+}
+.plan-card:hover {
+  border-color: rgba(123,69,255,0.3);
+  background: rgba(123,69,255,0.02);
+}
+.plan-card input[type="radio"] {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  accent-color: var(--purple);
+  width: 18px;
+  height: 18px;
+}
+.plan-card:has(input:checked) {
+  border-color: var(--purple);
+  background: rgba(123,69,255,0.04);
+  box-shadow: 0 2px 12px rgba(123,69,255,0.1);
+}
+.plan-popular {
+  border-color: rgba(123,69,255,0.3);
+}
+.plan-badge {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: linear-gradient(135deg, var(--purple), var(--coral));
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 3px 12px;
+  border-radius: 100px;
+}
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  padding-right: 30px;
+}
+.plan-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+.plan-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--purple);
+}
+.plan-price span {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+.plan-limit {
+  font-size: 0.73rem;
+  color: var(--muted);
+  background: rgba(0,0,0,0.03);
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  margin-top: 2px;
+}
+.plan-limit-high {
+  color: #2A9D8F;
+  background: rgba(42,157,143,0.06);
+  font-weight: 500;
+}
+.plan-yearly {
+  font-size: 0.75rem;
+  color: #2A9D8F;
+  font-weight: 600;
+  margin-top: -6px;
+  margin-bottom: 12px;
+  padding-right: 30px;
+}
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+.plan-features li {
+  font-size: 0.82rem;
+  color: var(--muted);
+  position: relative;
+  padding-left: 16px;
+}
+.plan-features li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--purple);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
 /* Range slider */
 .range-wrap {
   display: flex;
@@ -359,16 +474,65 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
     </div>
 
-    <!-- Q5 -->
+    <!-- Q5 — Plan Selection (pricing psychology: show value, not just price) -->
     <div class="question-card">
       <div class="q-number">Question 5 of 7</div>
-      <div class="q-label">Would you pay for a premium teen money app?</div>
-      <div class="options">
-        <label class="option-label"><input type="radio" name="q5" value="Free only" required><span>No, it must be free</span></label>
-        <label class="option-label"><input type="radio" name="q5" value="Under 99/mo"><span>Yes, up to &#8377;99/month</span></label>
-        <label class="option-label"><input type="radio" name="q5" value="Under 199/mo"><span>Yes, up to &#8377;199/month</span></label>
-        <label class="option-label"><input type="radio" name="q5" value="Under 499/mo"><span>Yes, up to &#8377;499/month if it's really good</span></label>
-        <label class="option-label"><input type="radio" name="q5" value="One-time fee preferred"><span>I'd prefer a one-time fee over monthly</span></label>
+      <div class="q-label">If VybePay launched today, which plan would you pick?</div>
+      <div class="q-sublabel">All plans include a teen app + parent dashboard</div>
+      <div class="plan-options">
+        <label class="plan-card">
+          <input type="radio" name="q5" value="Starter (Free)" required>
+          <div class="plan-header">
+            <div class="plan-name">Starter</div>
+            <div class="plan-price">Free</div>
+          </div>
+          <div class="plan-limit">&#8377;10,000/month load limit &middot; &#8377;1,00,000/year</div>
+          <ul class="plan-features">
+            <li>Virtual prepaid card</li>
+            <li>Basic spending alerts</li>
+            <li>1 savings goal</li>
+            <li>AI money coach (3 questions/mo)</li>
+            <li>Virtual trading (view only)</li>
+          </ul>
+        </label>
+        <label class="plan-card plan-popular">
+          <div class="plan-badge">Most Popular</div>
+          <input type="radio" name="q5" value="Smart (₹99/mo · ₹999/yr)">
+          <div class="plan-header">
+            <div class="plan-name">Smart</div>
+            <div class="plan-price">&#8377;99<span>/mo</span></div>
+          </div>
+          <div class="plan-yearly">or &#8377;999/year (save 16%)</div>
+          <div class="plan-limit plan-limit-high">Up to &#8377;2,00,000 balance &middot; Physical RuPay card</div>
+          <ul class="plan-features">
+            <li>Physical RuPay card + UPI</li>
+            <li>Real-time spending notifications</li>
+            <li>Unlimited savings goals</li>
+            <li>Spending category controls</li>
+            <li>AI money coach (unlimited)</li>
+            <li>Virtual trading with portfolio</li>
+            <li>Full KYC done for free</li>
+          </ul>
+        </label>
+        <label class="plan-card">
+          <input type="radio" name="q5" value="Pro Family (₹199/mo · ₹1999/yr)">
+          <div class="plan-header">
+            <div class="plan-name">Pro Family</div>
+            <div class="plan-price">&#8377;199<span>/mo</span></div>
+          </div>
+          <div class="plan-yearly">or &#8377;1,999/year (save 17%)</div>
+          <div class="plan-limit plan-limit-high">Up to &#8377;2,00,000 balance &middot; Up to 3 teenagers</div>
+          <ul class="plan-features">
+            <li>Everything in Smart</li>
+            <li>Up to 3 teenagers on one plan</li>
+            <li>Financial literacy courses</li>
+            <li>Chore rewards system</li>
+            <li>Weekly money reports</li>
+            <li>Advanced AI coach (investment tips)</li>
+            <li>Virtual trading competitions</li>
+            <li>Priority support</li>
+          </ul>
+        </label>
       </div>
     </div>
 
@@ -407,7 +571,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 <script>
 // Google Apps Script URL for survey responses — UPDATE THIS with your survey sheet URL
-var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxnDYzzIYodGS-4ltlAts-uAyNQVEoKIne5cEVBqiOQhjbV0XaH9DNLJKUKUcEz28-a/exec';
+var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/YOUR_SURVEY_SCRIPT_ID/exec';
 
 function submitSurvey(e) {
   e.preventDefault();
