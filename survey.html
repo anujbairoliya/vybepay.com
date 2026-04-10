@@ -571,7 +571,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 <script>
 // Google Apps Script URL for survey responses — UPDATE THIS with your survey sheet URL
-var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/AKfycbwQX4LhHGq8xb3bKCblNl_pEN-wiLWkBL-9jEh0-1a3WarIsiyzNrPF5YstWIitlOFS/exec';
+var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxeresQJoLGJVyvHaHDDQeKqsbvBC5t05-QxvJ4a5MWaJJnn-7p9qmEWqKBomng0hQ/exec';
 
 function submitSurvey(e) {
   e.preventDefault();
@@ -611,7 +611,7 @@ function submitSurvey(e) {
 
   data.timestamp = new Date().toISOString();
 
-  // Send via POST
+  // Send via POST only (no backup GET — avoids duplicate entries)
   fetch(SURVEY_SHEET_URL, {
     method: 'POST',
     mode: 'no-cors',
@@ -620,15 +620,8 @@ function submitSurvey(e) {
   }).then(function() {
     showSuccess();
   }).catch(function() {
-    showSuccess(); // Show success anyway — data sent via backup
+    showSuccess();
   });
-
-  // Backup via GET (image ping)
-  var params = Object.keys(data).map(function(k) {
-    return k + '=' + encodeURIComponent(data[k]);
-  }).join('&');
-  var img = new Image();
-  img.src = SURVEY_SHEET_URL + '?' + params;
 
   return false;
 }
