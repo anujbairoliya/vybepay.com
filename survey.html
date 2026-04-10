@@ -571,7 +571,7 @@ input[type="range"]::-webkit-slider-thumb {
 
 <script>
 // Google Apps Script URL for survey responses — UPDATE THIS with your survey sheet URL
-var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/AKfycbykzR1bSLC9VkPEvvjIXDzVb7IZ_MW6LkwlEXxiqvbN8IlfGmpG4tP7h3GTOnsOJAw1/exec';
+var SURVEY_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxbU4xFfiGT78xejyyJEft2_j5xgMTuOXoLUXs6TlWNlgwVnWI6N1kmprFZMKswT0cg/exec';
 
 function submitSurvey(e) {
   e.preventDefault();
@@ -581,6 +581,10 @@ function submitSurvey(e) {
 
   var form = document.getElementById('survey-form');
   var data = {};
+
+  // Get email from URL param (passed from waitlist form)
+  var urlParams = new URLSearchParams(window.location.search);
+  data.email = urlParams.get('email') || '';
 
   // Q1 - radio
   var q1 = form.querySelector('input[name="q1"]:checked');
