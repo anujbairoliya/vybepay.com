@@ -1305,7 +1305,8 @@ function showSuccess(rowNum) {
   var position = rowNum ? (999 + rowNum) : (1000 + Math.floor(Math.random()*20));
   document.getElementById('position-num').textContent = position;
   // Pass email to survey link so we can match waitlist + survey data
-  var userEmail = document.getElementById('wl-email').value.trim();
+  var emailEl = document.getElementById('email');
+  var userEmail = emailEl ? emailEl.value.trim() : '';
   var surveyLink = document.querySelector('.survey-cta');
   if (surveyLink && userEmail) {
     surveyLink.href = '/survey?email=' + encodeURIComponent(userEmail);
