@@ -938,7 +938,7 @@ select.form-input {
       <p class="wl-subline">Something new is coming for Indian teens and parents. Be the first to find out.</p>
 
       <div class="form-card">
-        <form id="waitlist-form" onsubmit="handleSubmit(event)" novalidate>
+        <form id="waitlist-form" novalidate>
           <div class="form-group">
             <label>I am a...</label>
             <div class="role-selector">
@@ -1248,10 +1248,23 @@ function showErr(fId, eId) {
 function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 function isValidPhone(v) { return /^\d{10}$/.test(v.replace(/[\s\-()]/g,'')); }
 
-function handleSubmit(e) {
-  e.preventDefault(); clearErrors();
+var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwCwTASJQ9j17g65oUJlmuq61hzEmrF8vgJ7AQD9RO-Hdv-f4kb_99D3eymVc-r15TW/exec';
+
+// Attach event listener after DOM loads (same pattern as working survey form)
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    handleSubmit();
+    return false;
+  });
+});
+
+function handleSubmit() {
+  clearErrors();
   var ok = true;
-  var role = document.querySelector('input[name="role"]:checked').value;
+  var roleEl = document.querySelector('input[name="role"]:checked');
+  var role = roleEl ? roleEl.value : 'parent';
   var fullname = document.getElementById('fullname').value.trim();
   var email = document.getElementById('email').value.trim();
   var phone = document.getElementById('phone').value.trim();
@@ -1279,17 +1292,21 @@ function handleSubmit(e) {
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Joining...'; btn.disabled = true;
 
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwCwTASJQ9j17g65oUJlmuq61hzEmrF8vgJ7AQD9RO-Hdv-f4kb_99D3eymVc-r15TW/exec';
-
-  // Method: Use fetch with no-cors as reliable fallback, plus an image ping for guaranteed delivery
+  // Send via POST (same method as working survey form)
   fetch(SHEET_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(data)
-  }).then(function(){ showSuccess(null); }).catch(function(){ showSuccess(null); });
+  }).then(function() {
+    console.log('Waitlist POST sent successfully');
+    showSuccess(null);
+  }).catch(function(err) {
+    console.log('Waitlist POST error:', err);
+    showSuccess(null);
+  });
 
-  // Backup: Also send via URL params (GET request through image) for guaranteed delivery
+  // Backup: Also send via GET (image ping) for guaranteed delivery
   var params = 'name=' + encodeURIComponent(data.name) +
     '&email=' + encodeURIComponent(data.email) +
     '&phone=' + encodeURIComponent(data.phone) +
@@ -1298,9 +1315,15 @@ function handleSubmit(e) {
     '&city=' + encodeURIComponent(data.city);
   var img = new Image();
   img.src = SHEET_URL + '?' + params;
+
+  // Safety: show success after 2 seconds even if fetch hangs
+  setTimeout(function() { showSuccess(null); }, 2000);
 }
 
+var successShown = false;
 function showSuccess(rowNum) {
+  if (successShown) return; // Prevent duplicate calls
+  successShown = true;
   try {
     // Read email BEFORE hiding the form
     var emailEl = document.getElementById('email');
