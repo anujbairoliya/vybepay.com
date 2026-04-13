@@ -1301,16 +1301,27 @@ function handleSubmit(e) {
 }
 
 function showSuccess(rowNum) {
-  document.getElementById('waitlist-form').style.display = 'none';
-  var position = rowNum ? (999 + rowNum) : (1000 + Math.floor(Math.random()*20));
-  document.getElementById('position-num').textContent = position;
-  // Pass email to survey link so we can match waitlist + survey data
-  var emailEl = document.getElementById('email');
-  var userEmail = emailEl ? emailEl.value.trim() : '';
-  var surveyLink = document.querySelector('.survey-cta');
-  if (surveyLink && userEmail) {
-    surveyLink.href = '/survey?email=' + encodeURIComponent(userEmail);
+  try {
+    // Read email BEFORE hiding the form
+    var emailEl = document.getElementById('email');
+    var userEmail = emailEl ? emailEl.value.trim() : '';
+
+    // Hide form
+    document.getElementById('waitlist-form').style.display = 'none';
+
+    // Show position
+    var position = rowNum ? (999 + rowNum) : (1000 + Math.floor(Math.random()*20));
+    document.getElementById('position-num').textContent = position;
+
+    // Pass email to survey link
+    var surveyLink = document.querySelector('.survey-cta');
+    if (surveyLink && userEmail) {
+      surveyLink.href = '/survey?email=' + encodeURIComponent(userEmail);
+    }
+  } catch(err) {
+    console.log('showSuccess error:', err);
   }
+  // Always show success state no matter what
   document.getElementById('success-state').classList.add('show');
 }
 </script>
