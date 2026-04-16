@@ -291,6 +291,115 @@ textarea.text-input {
   font-weight: 700;
   font-size: 0.78rem;
 }
+.plan-features li.missing {
+  color: #C8868E;
+  text-decoration: line-through;
+}
+.plan-features li.missing::before {
+  content: "\2715";
+  color: #E53935;
+}
+
+/* Loss aversion — Starter looks limited */
+.plan-starter {
+  opacity: 0.92;
+}
+.plan-limited-banner {
+  display: inline-block;
+  background: rgba(229,57,53,0.1);
+  color: #E53935;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.plan-name-muted { color: var(--muted) !important; }
+.plan-price-free {
+  color: var(--muted) !important;
+  font-weight: 600 !important;
+}
+
+/* Daily price (coral) */
+.plan-daily {
+  font-size: 0.78rem;
+  color: var(--coral);
+  font-weight: 600;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+/* Trial badge on plan card */
+.plan-trial-badge {
+  display: inline-block;
+  background: rgba(46,125,50,0.1);
+  color: #2E7D32;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+/* Decoy plan — Pro Family Plus */
+.plan-decoy-badge {
+  background: linear-gradient(135deg, #4A4A5E, #2D2D3A) !important;
+}
+
+/* Trial reveal section (Q5 sub-question) */
+.trial-reveal {
+  margin-top: 22px;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(123,69,255,0.05), rgba(255,89,48,0.05));
+  border: 1px dashed var(--purple);
+  border-radius: 12px;
+}
+.trial-reveal-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  color: var(--purple);
+  margin-bottom: 6px;
+}
+.trial-reveal-desc {
+  font-size: 0.85rem;
+  color: var(--dark);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.trial-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.trial-pill {
+  flex: 1;
+  min-width: 130px;
+  padding: 12px;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--dark);
+  transition: all 0.15s;
+  position: relative;
+}
+.trial-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.trial-pill:hover { border-color: rgba(123,69,255,0.4); }
+.trial-pill:has(input:checked) {
+  border-color: var(--purple);
+  background: rgba(123,69,255,0.06);
+  color: var(--purple);
+  font-weight: 600;
+}
 
 /* Range slider */
 .range-wrap {
@@ -474,27 +583,32 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
     </div>
 
-    <!-- Q5 — Plan Selection (pricing psychology: show value, not just price) -->
+    <!-- Q5 — Plan Selection (decoy + loss aversion + daily framing + trial reveal) -->
     <div class="question-card">
       <div class="q-number">Question 5 of 7</div>
-      <div class="q-label">If VybePay launched today, which plan would you pick?</div>
-      <div class="q-sublabel">All plans include a teen app + parent dashboard</div>
+      <div class="q-label">Which plan would you start with?</div>
+      <div class="q-sublabel">Most Indian families pick Smart. Compare what&#8217;s included vs what you&#8217;d miss on Starter.</div>
       <div class="plan-options">
-        <label class="plan-card">
+
+        <!-- Starter (LIMITED, loss aversion) -->
+        <label class="plan-card plan-starter">
           <input type="radio" name="q5" value="Starter (Free)" required>
+          <span class="plan-limited-banner">Limited</span>
           <div class="plan-header">
-            <div class="plan-name">Starter</div>
-            <div class="plan-price">Free</div>
+            <div class="plan-name plan-name-muted">Starter</div>
+            <div class="plan-price plan-price-free">Free</div>
           </div>
-          <div class="plan-limit">&#8377;10,000/month load limit &middot; &#8377;1,00,000/year</div>
+          <div class="plan-limit">Min KYC only &middot; &#8377;10K/mo load &middot; &#8377;1L/yr cap</div>
           <ul class="plan-features">
-            <li>Virtual prepaid card</li>
-            <li>Basic spending alerts</li>
-            <li>1 savings goal</li>
-            <li>AI money coach (3 questions/mo)</li>
-            <li>Virtual trading (view only)</li>
+            <li>Virtual prepaid card (no physical)</li>
+            <li class="missing">AI money coach</li>
+            <li class="missing">Virtual trading with portfolio</li>
+            <li class="missing">Physical RuPay card + UPI</li>
+            <li class="missing">Unlimited savings goals</li>
           </ul>
         </label>
+
+        <!-- Smart (MOST POPULAR, daily framing, trial) -->
         <label class="plan-card plan-popular">
           <div class="plan-badge">Most Popular</div>
           <input type="radio" name="q5" value="Smart (₹99/mo · ₹999/yr)">
@@ -502,37 +616,81 @@ input[type="range"]::-webkit-slider-thumb {
             <div class="plan-name">Smart</div>
             <div class="plan-price">&#8377;99<span>/mo</span></div>
           </div>
+          <div class="plan-daily">Just &#8377;3.30/day &mdash; less than a chai</div>
           <div class="plan-yearly">or &#8377;999/year (save 16%)</div>
-          <div class="plan-limit plan-limit-high">Up to &#8377;2,00,000 balance &middot; Physical RuPay card</div>
+          <div class="plan-limit plan-limit-high">Full KYC free &middot; Up to &#8377;2,00,000 balance</div>
           <ul class="plan-features">
             <li>Physical RuPay card + UPI</li>
-            <li>Real-time spending notifications</li>
+            <li>Real-time spending alerts</li>
             <li>Unlimited savings goals</li>
-            <li>Spending category controls</li>
             <li>AI money coach (unlimited)</li>
             <li>Virtual trading with portfolio</li>
-            <li>Full KYC done for free</li>
+            <li>Spending category controls</li>
           </ul>
+          <span class="plan-trial-badge">&#10003; 30-day free trial included</span>
         </label>
+
+        <!-- Pro Family (daily framing) -->
         <label class="plan-card">
           <input type="radio" name="q5" value="Pro Family (₹199/mo · ₹1999/yr)">
           <div class="plan-header">
             <div class="plan-name">Pro Family</div>
             <div class="plan-price">&#8377;199<span>/mo</span></div>
           </div>
+          <div class="plan-daily">&#8377;6.60/day for the whole family</div>
           <div class="plan-yearly">or &#8377;1,999/year (save 17%)</div>
-          <div class="plan-limit plan-limit-high">Up to &#8377;2,00,000 balance &middot; Up to 3 teenagers</div>
+          <div class="plan-limit plan-limit-high">Up to 3 teenagers on one plan &middot; Full KYC free</div>
           <ul class="plan-features">
-            <li>Everything in Smart</li>
-            <li>Up to 3 teenagers on one plan</li>
+            <li>Everything in Smart &times; 3 kids</li>
             <li>Financial literacy courses</li>
             <li>Chore rewards system</li>
             <li>Weekly money reports</li>
-            <li>Advanced AI coach (investment tips)</li>
+            <li>Advanced AI coach</li>
             <li>Virtual trading competitions</li>
             <li>Priority support</li>
           </ul>
         </label>
+
+        <!-- Pro Family Plus (DECOY — makes ₹199 look reasonable) -->
+        <label class="plan-card">
+          <div class="plan-badge plan-decoy-badge">Premium</div>
+          <input type="radio" name="q5" value="Pro Family Plus (₹499/mo)">
+          <div class="plan-header">
+            <div class="plan-name">Pro Family Plus</div>
+            <div class="plan-price">&#8377;499<span>/mo</span></div>
+          </div>
+          <div class="plan-daily">&#8377;16.60/day &mdash; full concierge</div>
+          <div class="plan-limit plan-limit-high">Premium metal card for teen &middot; Up to 4 kids</div>
+          <ul class="plan-features">
+            <li>Everything in Pro Family</li>
+            <li>Premium metal card for teen</li>
+            <li>1:1 CFA-certified advisor (quarterly)</li>
+            <li>Zero forex markup overseas</li>
+            <li>Dedicated family concierge</li>
+            <li>Up to 4 teenagers</li>
+          </ul>
+        </label>
+
+      </div>
+
+      <!-- Trial reveal (Option A layered on) -->
+      <div class="trial-reveal">
+        <div class="trial-reveal-title">One more thing &mdash; would you try Smart free for 30 days?</div>
+        <div class="trial-reveal-desc">Full access to AI coach, virtual trading, physical card &mdash; no charges for the first month. Cancel anytime.</div>
+        <div class="trial-options">
+          <label class="trial-pill">
+            <input type="radio" name="q5_trial" value="Yes, start the trial">
+            &#10003; Yes, start trial
+          </label>
+          <label class="trial-pill">
+            <input type="radio" name="q5_trial" value="Maybe — tell me more at launch">
+            Maybe &mdash; tell me more
+          </label>
+          <label class="trial-pill">
+            <input type="radio" name="q5_trial" value="No, prefer Starter">
+            No, I&#8217;ll stick with Starter
+          </label>
+        </div>
       </div>
     </div>
 
@@ -611,9 +769,13 @@ function submitSurvey() {
   // Q4 - range
   data.q4_pocket_money = form.querySelector('input[name="q4"]').value;
 
-  // Q5 - radio
+  // Q5 - radio (plan selection)
   var q5 = form.querySelector('input[name="q5"]:checked');
   data.q5_willingness_to_pay = q5 ? q5.value : '';
+
+  // Q5 trial reveal (would you try free trial?)
+  var q5t = form.querySelector('input[name="q5_trial"]:checked');
+  data.q5_trial = q5t ? q5t.value : '';
 
   // Q6 - text
   data.q6_frustration = form.querySelector('textarea[name="q6"]').value;
