@@ -8,7 +8,7 @@
 <meta name="keywords" content="teen banking app India, pocket money app, prepaid card for kids India, UPI for teenagers, teen debit card India, kids money management app, children pocket money card, teen savings app, parental control money app, teen financial literacy India, kids prepaid card, digital pocket money India, money app for children, teen fintech India, VybePay, pocket money tracker, teen UPI ID, safe payments for kids, kids banking India, financial education teenagers India">
 <meta name="author" content="VybePay by Essby Fintech Innovations Private Limited">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<link rel="canonical" href="https://vybepay.com">
+<link rel="canonical" href="https://vybepay.com/">
 <meta name="geo.region" content="IN">
 <meta name="geo.placename" content="India">
 <meta name="language" content="English">
@@ -671,6 +671,14 @@ select.form-input {
 .form-error { font-size: 0.72rem; color: var(--terracotta); margin-top: 4px; display: none; }
 .form-error.show { display: block; }
 .disclaimer { font-size: 0.7rem; color: var(--text-muted); line-height: 1.55; margin-top: 20px; margin-bottom: 16px; text-align: left; }
+.disclaimer a { color: var(--purple); text-decoration: none; border-bottom: 1px solid rgba(124,92,252,0.35); }
+.disclaimer-legal { margin-top: 8px; }
+.disclaimer-legal > summary { cursor: pointer; color: var(--text-muted); opacity: 0.75; list-style: none; font-size: 0.66rem; }
+.disclaimer-legal > summary::-webkit-details-marker { display: none; }
+.disclaimer-legal > summary::before { content: "\25B8 "; }
+.disclaimer-legal[open] > summary::before { content: "\25BE "; }
+.disclaimer-legal[open] { color: var(--text-muted); }
+.cta-urgency { margin-top: 12px; text-align: center; font-size: 0.78rem; font-weight: 500; color: var(--purple); }
 .submit-btn {
   width: 100%; padding: 15px; background: var(--dark); color: var(--cream);
   border: none; border-radius: var(--radius-md);
@@ -693,6 +701,11 @@ select.form-input {
 .seo-inner h2 { font-family: var(--font-display); font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 10px; }
 .seo-inner h3 { font-family: var(--font-display); font-size: 0.95rem; color: var(--text-secondary); margin-top: 20px; margin-bottom: 6px; }
 .seo-inner p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+.seo-guides { margin: 8px 0 4px; padding-left: 18px; }
+.seo-guides li { font-size: 0.82rem; line-height: 1.9; }
+.seo-guides a, .seo-blog-link, .footer-blog-link { color: var(--purple); text-decoration: none; }
+.seo-guides a:hover, .seo-blog-link:hover, .footer-blog-link:hover { text-decoration: underline; }
+.seo-blog-link { font-weight: 600; font-size: 0.82rem; }
 
 /* Footer */
 .footer { text-align: center; padding: 24px; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--cream); font-family: var(--font-body); }
@@ -1014,9 +1027,14 @@ select.form-input {
             </div>
           </div>
           <div class="disclaimer">
-            By submitting this form, you hereby authorise Essby Fintech Innovations Private Limited (operating as "VybePay") to collect, store, and process the personal information provided above for the purposes of product updates, early access communication, and onboarding. Your data shall be processed in accordance with applicable Indian data protection laws, including the Digital Personal Data Protection Act, 2023. We will not disclose your personal information to any third party without your prior consent, except as required by law.
+            &#128274; Your details stay private &mdash; no spam, ever. By joining you agree to our <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>.
+            <details class="disclaimer-legal">
+              <summary>Legal details</summary>
+              By submitting this form, you hereby authorise Essby Fintech Innovations Private Limited (operating as "VybePay") to collect, store, and process the personal information provided above for the purposes of product updates, early access communication, and onboarding. Your data shall be processed in accordance with applicable Indian data protection laws, including the Digital Personal Data Protection Act, 2023. We will not disclose your personal information to any third party without your prior consent, except as required by law.
+            </details>
           </div>
           <button type="submit" class="submit-btn" id="submit-btn">Join the Waitlist</button>
+          <div class="cta-urgency">&#9889; Early access rolls out in batches &mdash; the earlier you join, the sooner you're in.</div>
         </form>
         <div class="success-state" id="success-state">
           <div class="success-icon">&#128588;</div>
@@ -1038,13 +1056,28 @@ select.form-input {
       <p>No more cash that disappears without a trace. No more teens borrowing a parent's phone to make UPI payments. VybePay gives every teen their own financial identity with a prepaid RuPay card and personalised UPI ID, while parents retain full control through spending limits, merchant restrictions, and real-time transaction visibility.</p>
       <h3>Built for Indian families</h3>
       <p>VybePay is designed from the ground up for India — Aadhaar-based KYC, RuPay card support, UPI integration, and compliance with RBI's framework for minor accounts. Available on Android and iOS.</p>
+      <h3>Guides for parents &amp; teens</h3>
+      <p>Learn how money works for Indian families — from pocket money to minor bank accounts and UPI:</p>
+      <ul class="seo-guides">
+        <li><a href="/blog/how-to-give-pocket-money-teenager-india.html">How to give pocket money to your teenager</a></li>
+        <li><a href="/blog/are-pocket-money-apps-safe.html">Are pocket money apps safe for teenagers?</a></li>
+        <li><a href="/blog/best-pocket-money-apps-india.html">Best pocket money apps in India</a></li>
+        <li><a href="/blog/how-much-pocket-money-teenager-india.html">How much pocket money for a teenager in India?</a></li>
+        <li><a href="/blog/can-teenagers-get-debit-card-india.html">Can teenagers get a debit card in India?</a></li>
+        <li><a href="/blog/upi-for-teenagers-india.html">UPI for teenagers in India</a></li>
+        <li><a href="/blog/how-to-open-bank-account-minor-india.html">How to open a bank account for a minor in India</a></li>
+        <li><a href="/blog/rbi-rules-minor-bank-account.html">RBI rules for minor bank accounts</a></li>
+        <li><a href="/blog/minor-bank-account-vs-pocket-money-app.html">Minor bank account vs pocket money app</a></li>
+        <li><a href="/blog/teach-teenager-about-money.html">How to teach your teenager about money</a></li>
+      </ul>
+      <p><a class="seo-blog-link" href="/blog/">Read all guides on the VybePay blog &rarr;</a></p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="footer-inner">
       <span>&copy; 2026 Essby Fintech Innovations Private Limited. All rights reserved.</span>
-      <span class="footer-brand">Vybe<span class="footer-purple">Pay</span></span>
+      <span><a class="footer-blog-link" href="/blog/">Guides</a> &middot; <a class="footer-blog-link" href="/privacy">Privacy</a> &middot; <span class="footer-brand">Vybe<span class="footer-purple">Pay</span></span></span>
     </div>
     <div class="footer-disclaimer">
       Disclaimer: VybePay is a product of Essby Fintech Innovations Private Limited. All financial products and services, including but not limited to prepaid payment instruments, UPI services, and digital wallets, are subject to the receipt of requisite approvals, licences, and authorisations from the Reserve Bank of India (RBI) and other relevant regulatory and governmental authorities. Nothing contained herein shall constitute an offer, solicitation, or guarantee of any financial product or service. The information provided on this website is for general informational purposes only and does not constitute financial, legal, or investment advice.
@@ -1292,7 +1325,15 @@ function handleSubmit() {
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Joining...'; btn.disabled = true;
 
-  // Send via POST (same method as working survey form)
+  // Build GET fallback params up front (used ONLY if the POST fails)
+  var params = 'name=' + encodeURIComponent(data.name) +
+    '&email=' + encodeURIComponent(data.email) +
+    '&phone=' + encodeURIComponent(data.phone) +
+    '&role=' + encodeURIComponent(data.role) +
+    '&age=' + encodeURIComponent(data.age) +
+    '&city=' + encodeURIComponent(data.city);
+
+  // Send via POST (same method as the working survey form)
   fetch(SHEET_URL, {
     method: 'POST',
     mode: 'no-cors',
@@ -1302,19 +1343,14 @@ function handleSubmit() {
     console.log('Waitlist POST sent successfully');
     showSuccess(null);
   }).catch(function(err) {
-    console.log('Waitlist POST error:', err);
+    // Only on a genuine network failure do we fall back to a GET image-ping.
+    // Previously this GET fired in PARALLEL with the POST on every submit,
+    // which wrote TWO rows per signup. Now it's a true fallback — no duplicates.
+    console.log('Waitlist POST failed, using GET fallback:', err);
+    var img = new Image();
+    img.src = SHEET_URL + '?' + params;
     showSuccess(null);
   });
-
-  // Backup: Also send via GET (image ping) for guaranteed delivery
-  var params = 'name=' + encodeURIComponent(data.name) +
-    '&email=' + encodeURIComponent(data.email) +
-    '&phone=' + encodeURIComponent(data.phone) +
-    '&role=' + encodeURIComponent(data.role) +
-    '&age=' + encodeURIComponent(data.age) +
-    '&city=' + encodeURIComponent(data.city);
-  var img = new Image();
-  img.src = SHEET_URL + '?' + params;
 
   // Safety: show success after 2 seconds even if fetch hangs
   setTimeout(function() { showSuccess(null); }, 2000);

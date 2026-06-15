@@ -1,0 +1,15 @@
+# Internal / non-deployable files — keep these OUT of the public repo
+.DS_Store
+.claude/
+
+# Backend (Google Apps Script) — pasted into Apps Script editor, not served
+apps-script.js
+combined-apps-script.js
+survey-apps-script.js
+waitlist-apps-script.js
+
+# Internal docs & marketing notes
+HANDOVER.md
+quora-answers.md
+reddit-posts.md
+pricing-options-preview.html
