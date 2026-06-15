@@ -695,6 +695,15 @@ select.form-input {
 .success-position { font-family: var(--font-display); font-size: 1.1rem; color: var(--purple); margin-top: 16px; }
 .survey-cta { display: inline-block; margin-top: 20px; background: linear-gradient(135deg, #7B45FF, #FF5930); color: #fff; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.88rem; padding: 10px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
 .survey-cta:hover { opacity: 0.88; text-decoration: none; }
+.referral-block { margin-top: 24px; padding: 18px 16px; background: rgba(123,69,255,0.05); border: 1px solid rgba(123,69,255,0.15); border-radius: 14px; text-align: center; }
+.ref-head { font-family: var(--font-display); font-size: 1.05rem; color: var(--dark); margin: 0 0 4px; }
+.ref-sub { font-size: 0.8rem; color: var(--text-muted); margin: 0 0 14px; line-height: 1.5; }
+.ref-link-row { display: flex; gap: 8px; margin-bottom: 10px; }
+.ref-link { flex: 1; min-width: 0; font-family: var(--font-body); font-size: 0.76rem; color: var(--dark); background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.ref-copy { flex-shrink: 0; font-family: var(--font-body); font-weight: 600; font-size: 0.8rem; color: var(--purple); background: #fff; border: 1px solid rgba(123,69,255,0.35); border-radius: 10px; padding: 10px 16px; cursor: pointer; transition: all 0.2s; }
+.ref-copy:hover { background: var(--purple); color: #fff; }
+.wa-share { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: #25D366; color: #fff; font-family: var(--font-body); font-weight: 600; font-size: 0.9rem; padding: 12px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
+.wa-share:hover { opacity: 0.9; text-decoration: none; }
 
 /* SEO Content */
 .seo-content { max-width: 640px; margin: 0 auto; padding: 48px 24px 32px; text-align: left; }
@@ -1041,6 +1050,15 @@ select.form-input {
           <h3>You're on the list!</h3>
           <p>We'll reach out when it's your turn. The earlier you joined, the sooner you get in.</p>
           <div class="success-position">#<span id="position-num">0</span> in line</div>
+          <div class="referral-block">
+            <p class="ref-head">&#128640; Want in sooner? Move up the line.</p>
+            <p class="ref-sub">Every friend who joins through your link moves you up the early-access list.</p>
+            <div class="ref-link-row">
+              <input id="ref-link" class="ref-link" readonly value="">
+              <button type="button" id="copy-ref" class="ref-copy">Copy</button>
+            </div>
+            <a id="wa-share" class="wa-share" href="#" target="_blank" rel="noopener">&#128241; Share on WhatsApp</a>
+          </div>
           <a href="/survey" class="survey-cta">Help us build VybePay for you &rarr;</a>
         </div>
       </div>
@@ -1283,6 +1301,19 @@ function isValidPhone(v) { return /^\d{10}$/.test(v.replace(/[\s\-()]/g,'')); }
 
 var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwCwTASJQ9j17g65oUJlmuq61hzEmrF8vgJ7AQD9RO-Hdv-f4kb_99D3eymVc-r15TW/exec';
 
+// --- Referral ---
+// Capture an inbound ?ref=CODE (who referred this visitor).
+function getParam(name){ try { return new URLSearchParams(window.location.search).get(name) || ''; } catch(e){ return ''; } }
+var REFERRER_CODE = getParam('ref');
+// Derive a stable short code from the email. MUST stay identical to refCode() in the Apps Script backend
+// so the share link shown here matches the one in the welcome email.
+function refCode(email){
+  var s = (email||'').trim().toLowerCase();
+  var h = 5381;
+  for (var i=0;i<s.length;i++){ h = (((h<<5)+h) + s.charCodeAt(i)) >>> 0; }
+  return h.toString(36).toUpperCase().slice(0,8);
+}
+
 // Attach event listener after DOM loads (same pattern as working survey form)
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('waitlist-form').addEventListener('submit', function(e) {
@@ -1291,6 +1322,18 @@ document.addEventListener('DOMContentLoaded', function() {
     handleSubmit();
     return false;
   });
+  // Copy referral link
+  var copyBtn = document.getElementById('copy-ref');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var el = document.getElementById('ref-link');
+      if (!el || !el.value) return;
+      el.select(); el.setSelectionRange(0, 99999);
+      try { if (navigator.clipboard) { navigator.clipboard.writeText(el.value); } else { document.execCommand('copy'); } } catch(e) {}
+      var self = this; self.textContent = 'Copied!';
+      setTimeout(function() { self.textContent = 'Copy'; }, 2000);
+    });
+  }
 });
 
 function handleSubmit() {
@@ -1321,7 +1364,7 @@ function handleSubmit() {
   }
   if (!ok) return;
 
-  var data = { name:fullname, email:email, phone:countryCode+' '+phone, role:role, age:age, city:city };
+  var data = { name:fullname, email:email, phone:countryCode+' '+phone, role:role, age:age, city:city, referredBy:REFERRER_CODE };
   var btn = document.getElementById('submit-btn');
   btn.textContent = 'Joining...'; btn.disabled = true;
 
@@ -1331,7 +1374,8 @@ function handleSubmit() {
     '&phone=' + encodeURIComponent(data.phone) +
     '&role=' + encodeURIComponent(data.role) +
     '&age=' + encodeURIComponent(data.age) +
-    '&city=' + encodeURIComponent(data.city);
+    '&city=' + encodeURIComponent(data.city) +
+    '&referredBy=' + encodeURIComponent(data.referredBy);
 
   // Send via POST (same method as the working survey form)
   fetch(SHEET_URL, {
@@ -1376,6 +1420,18 @@ function showSuccess(rowNum) {
     var surveyLink = document.querySelector('.survey-cta');
     if (surveyLink && userEmail) {
       surveyLink.href = '/survey?email=' + encodeURIComponent(userEmail);
+    }
+
+    // Populate the referral share block (code derived from email — matches the welcome email)
+    if (userEmail) {
+      var refUrl = 'https://vybepay.com/?ref=' + refCode(userEmail);
+      var refInput = document.getElementById('ref-link');
+      if (refInput) refInput.value = refUrl;
+      var wa = document.getElementById('wa-share');
+      if (wa) {
+        var msg = "I just joined the VybePay waitlist — India's pocket-money app for teens, with parental controls. Join through my link and we both move up the early-access list: " + refUrl;
+        wa.href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+      }
     }
   } catch(err) {
     console.log('showSuccess error:', err);
